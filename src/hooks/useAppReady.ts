@@ -1,8 +1,9 @@
 import { useFonts } from "expo-font";
 import { useEffect, useState } from "react";
 
-const useAppReady = (): boolean => {
-  const [isReady, setIsReady] = useState<boolean>(false);
+const useAppReady = (): [boolean, boolean] => {
+  const [fontsReady, setFontsReady] = useState(false);
+  const [lottieReady, setLottieReady] = useState(false);
 
   const [fontLoaded, fontError] = useFonts({
     "Gluten-Bold": require("@assets/fonts/Gluten-Bold.ttf"),
@@ -12,12 +13,21 @@ const useAppReady = (): boolean => {
   });
 
   useEffect(() => {
+    try {
+      require("@assets/animations/brain-lottie.json");
+      setLottieReady(true);
+    } catch (error) {
+      console.error("Erreur lors de l'accès à l'animation Lottie :", error);
+    }
+  }, []);
+
+  useEffect(() => {
     if (fontLoaded || fontError) {
-      setIsReady(true);
+      setFontsReady(true);
     }
   }, [fontLoaded, fontError]);
 
-  return isReady;
+  return [fontsReady, lottieReady];
 };
 
 export default useAppReady;

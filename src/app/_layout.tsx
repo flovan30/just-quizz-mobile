@@ -1,15 +1,23 @@
 import useAppReady from "@/hooks/useAppReady";
 import useSplashScreen from "@/hooks/useSplashScreen";
-import { Stack } from "expo-router";
+import { Slot } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import "../styles/global.css";
 import AnimatedSplashScreen from "./splash";
 
+SplashScreen.preventAutoHideAsync();
+
 export default function RootLayout() {
-  const appReady = useAppReady();
+  const [fontsReady, lottieReady] = useAppReady();
   const [animationIsFinished, setAnimationIsFinished] = useSplashScreen();
 
-  if (!appReady || !animationIsFinished) {
+  if (!lottieReady) {
+    return null;
+  }
+
+  if (!fontsReady || !animationIsFinished) {
+    SplashScreen.hideAsync();
     return (
       <AnimatedSplashScreen
         onAnimationFinish={() => setAnimationIsFinished(true)}
@@ -20,7 +28,7 @@ export default function RootLayout() {
   return (
     <>
       <StatusBar style="inverted" />
-      <Stack screenOptions={{ headerShown: false }} />
+      <Slot />
     </>
   );
 }

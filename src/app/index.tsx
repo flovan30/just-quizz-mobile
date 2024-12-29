@@ -1,11 +1,13 @@
 import { Text, View } from "react-native";
 
-const App = () => {
+const HomeScreen = () => {
   return (
-    <View className="flex-1 bg-slate-900 items-center justify-center">
-      <Text className="font-GlutenMedium text-5xl text-white">Home page</Text>
+    <View className="flex-1 bg-custom-black items-center justify-center">
+      <Text className="font-GlutenMedium text-7xl text-custom-white">
+        Home page
+      </Text>
     </View>
   );
 };
 
-export default App;
+export default HomeScreen;
