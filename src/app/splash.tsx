@@ -10,7 +10,7 @@ const AnimatedSplashScreen = ({
   return (
     <>
       <StatusBar style="inverted" />
-      <View className="flex-1 items-center justify-center bg-slate-900">
+      <View className="flex-1 items-center justify-center bg-custom-black">
         <LottieView
           source={require("@assets/animations/brain-lottie.json")}
           autoPlay

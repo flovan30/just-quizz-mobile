@@ -10,7 +10,8 @@
       "@configs/*": ["src/configs/*"],
       "@hooks/*": ["src/hooks/*"],
       "@repositories/*": ["src/repositories/*"],
-      "@services/*": ["src/services/*"]
+      "@services/*": ["src/services/*"],
+      "@constants/*": ["src/constants/*"]
     }
   }
 }
