@@ -13,12 +13,8 @@ const useAppReady = (): [boolean, boolean] => {
   });
 
   useEffect(() => {
-    try {
-      require("@assets/animations/brain-lottie.json");
-      setLottieReady(true);
-    } catch (error) {
-      console.error("Erreur lors de l'accès à l'animation Lottie :", error);
-    }
+    require("@assets/animations/brain-lottie.json");
+    setLottieReady(true);
   }, []);
 
   useEffect(() => {
