@@ -39,10 +39,10 @@ const WelcomeScreen = () => {
         </View>
         {/* buttons */}
         <View className="items-center justify-center gap-12 my-14">
-          <Link href="/" asChild>
+          <Link href="/register" asChild>
             <Button backgroundColor="bg-custom-green" text="S'inscrire" />
           </Link>
-          <Link href="/" asChild>
+          <Link href="" asChild>
             <Button backgroundColor="bg-custom-blue" text="Se connecter" />
           </Link>
         </View>
