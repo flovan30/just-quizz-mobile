@@ -2,7 +2,6 @@ import useAppReady from "@/hooks/useAppReady";
 import useSplashScreen from "@/hooks/useSplashScreen";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { StatusBar } from "expo-status-bar";
 import "../styles/global.css";
 import AnimatedSplashScreen from "./splash";
 
@@ -27,9 +26,11 @@ export default function RootLayout() {
 
   return (
     <>
-      <StatusBar style="auto" />
-      <Stack screenOptions={{ headerShown: false }}>
+      <Stack screenOptions={{ headerShown: false, animation: "fade" }}>
         <Stack.Screen name="index" />
+        <Stack.Screen name="register" />
+        <Stack.Screen name="terms" options={{ presentation: "modal" }} />
+        <Stack.Screen name="privacy" options={{ presentation: "modal" }} />
       </Stack>
     </>
   );
