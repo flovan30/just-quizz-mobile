@@ -42,7 +42,7 @@ const WelcomeScreen = () => {
           <Link href="/register" asChild>
             <Button backgroundColor="bg-custom-green" text="S'inscrire" />
           </Link>
-          <Link href="" asChild>
+          <Link href="/login" asChild>
             <Button backgroundColor="bg-custom-blue" text="Se connecter" />
           </Link>
         </View>

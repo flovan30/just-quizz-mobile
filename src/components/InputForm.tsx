@@ -5,7 +5,7 @@ type InputProps = {
   name: string;
   label: string;
   control: any;
-  secureTextEntry: boolean;
+  secureTextEntry?: boolean;
   required?: boolean;
   pattern?: RegExp;
   paternErrorMessage?: string;
@@ -27,9 +27,9 @@ const InputForm = ({
       name={name}
       render={({ field: { onChange, value }, fieldState: { error } }) => (
         <View>
-          <Text className="font-RubikBold text-3xl pl-4 py-1">{label}</Text>
+          <Text className="font-RubikBold text-2xl pl-4 py-1">{label}</Text>
           <TextInput
-            className={`border-2 rounded-2xl px-2 font-RubikMedium text-xl ${
+            className={`border-2 rounded-2xl px-2 font-RubikMedium text-lg ${
               error ? "border-red-500" : ""
             }`}
             secureTextEntry={secureTextEntry}

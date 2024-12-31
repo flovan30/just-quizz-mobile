@@ -1,11 +1,8 @@
 import Button from "@/components/Button";
 import InputForm from "@/components/InputForm";
 import Colors from "@/constants/Colors";
-import useRegisterForm from "@/hooks/useRegisterForm";
-import Checkbox from "expo-checkbox";
-import { Link } from "expo-router";
+import { default as useLoginForm } from "@/hooks/useLoginForm";
 import { StatusBar } from "expo-status-bar";
-import { Controller } from "react-hook-form";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -16,8 +13,8 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
 
-const RegisterScreen = () => {
-  const { control, handleSubmit, onSubmit } = useRegisterForm();
+const LoginScreen = () => {
+  const { control, handleSubmit, onSubmit } = useLoginForm();
 
   return (
     <>
@@ -34,7 +31,7 @@ const RegisterScreen = () => {
             <View>
               <View className="bg-custom-black py-10">
                 <Text className="font-GlutenBold text-7xl text-custom-white text-center">
-                  Inscription
+                  Connexion
                 </Text>
               </View>
               <Svg
@@ -49,81 +46,33 @@ const RegisterScreen = () => {
               </Svg>
             </View>
 
-            {/* Form */}
+            {/* form */}
             <View className="flex-1 w-full gap-14 justify-center">
               <View className="px-14 gap-6">
                 <InputForm
-                  name="pseudo"
-                  label="Pseudo"
                   control={control}
-                  required
-                  pattern={/^[a-zA-Z0-9_@-]*$/}
-                  paternErrorMessage="Ce champ contient des caractères non autorisés."
-                />
-                <InputForm
-                  name="email"
                   label="E-mail"
-                  control={control}
+                  name="email"
+                  secureTextEntry={false}
                   required
                   pattern={/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/}
                   paternErrorMessage="Adresse mail invalide."
                 />
                 <InputForm
-                  name="password"
-                  label="Mot de passe"
                   control={control}
+                  label="Mot de passe"
+                  name="password"
                   secureTextEntry
                   required
-                  pattern={/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/}
-                  paternErrorMessage="Le mot de passe n'est pas assez sécurisé."
-                />
-
-                <Controller
-                  control={control}
-                  rules={{ required: true }}
-                  name="cgu"
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
-                    <View className="items-center">
-                      <View className="flex-row items-center justify-center">
-                        <Checkbox
-                          className="mr-2"
-                          value={value}
-                          onValueChange={onChange}
-                          color={Colors.CUSTOM_GREEN}
-                        />
-                        <Text className="font-RubikMedium text-lg">
-                          <Text>J'accepte les </Text>
-                          <Link
-                            href="/terms"
-                            className="text-custom-blue underline"
-                          >
-                            Conditions générales
-                          </Link>
-                          <Text>{"\n"}et la </Text>
-                          <Link
-                            href="/privacy"
-                            className="text-custom-blue underline"
-                          >
-                            Politique de confidentialité
-                          </Link>
-                          <Text>.</Text>
-                        </Text>
-                      </View>
-                      {error && (
-                        <Text className="text-red-500 text-lg font-bold">
-                          Vous devez accepter les conditions pour continuer.
-                        </Text>
-                      )}
-                    </View>
-                  )}
+                  pattern={
+                    /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+                  }
+                  paternErrorMessage="Le mot de passe doit contenir une majuscule, un chiffre et un caractère spécial."
                 />
               </View>
               <Button
-                backgroundColor="bg-custom-green"
-                text="S'inscrire"
+                backgroundColor="bg-custom-blue"
+                text="Se connecter"
                 onPress={handleSubmit(onSubmit)}
               />
             </View>
@@ -146,5 +95,4 @@ const RegisterScreen = () => {
     </>
   );
 };
-
-export default RegisterScreen;
+export default LoginScreen;
